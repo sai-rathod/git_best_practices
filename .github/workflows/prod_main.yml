@@ -65,5 +65,5 @@ jobs:
           docker rm -f $(docker ps -aq) || true
           docker pull ${{ secrets.DOCKERUSER }}/react-new-prod:latest
           docker image prune -f || true
-          docker run -d -p 3000:3000 ${{ secrets.DOCKERUSER }}/new-app-prod:latest
+          docker run -d -p 3000:3000 ${{ secrets.DOCKERUSER }}/react-new-prod:latest
           echo "deploy successful"
