@@ -1,9 +1,10 @@
+
 name: react CI/CD 
-run-name: running the main branch code CI/CD
+run-name: running the staging branch code CI/CD
 on: 
   push:
     branches:
-      - main
+      - staging
     paths-ignore:
       - "README.md"
       - ".github/workflows/**"
@@ -48,8 +49,8 @@ jobs:
         password: ${{ secrets.DOCKERPASS }}
     - name: push to docker hub
       run: |
-        docker build -t ${{ secrets.DOCKERUSER }}/react-new-prod:latest .
-        docker push ${{ secrets.DOCKERUSER }}/react-new-prod:latest
+        docker build -t ${{ secrets.DOCKERUSER }}/react-new-staging:latest .
+        docker push ${{ secrets.DOCKERUSER }}/react-new-staging:latest
         
   deploy:
     runs-on: ubuntu-latest
@@ -58,12 +59,12 @@ jobs:
     - name: login to the ec2 instance
       uses: appleboy/ssh-action@v1.0.0
       with:
-        host: ${{ secrets.AWS_HOST }}
+        host: ${{ secrets.AWS_HOST_STAGING }}
         username: ${{ secrets.AWS_USERNAME }}
         key: ${{ secrets.AWS_PEM_KEY }}
         script: |
           docker rm -f $(docker ps -aq) || true
-          docker pull ${{ secrets.DOCKERUSER }}/react-new-prod:latest
+          docker pull ${{ secrets.DOCKERUSER }}/react-new-staging:latest
           docker image prune -f || true
-          docker run -d -p 3000:3000 ${{ secrets.DOCKERUSER }}/new-app-prod:latest
+          docker run -d -p 3000:3000 ${{ secrets.DOCKERUSER }}/react-new-staging:latest
           echo "deploy successful"
