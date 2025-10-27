@@ -205,8 +205,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - [Deployment](https://facebook.github.io/create-react-app/docs/deployment)
 - [Troubleshooting: `npm run build` fails to minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-## Drive_link:
-**https://drive.google.com/drive/folders/163WfSB_k15tXuQPfoNNWNRHMcdiFs9Js**
+## Project Screenshots:
+*https://drive.google.com/drive/folders/163WfSB_k15tXuQPfoNNWNRHMcdiFs9Js?usp=sharing*
 ## Contributing
 
 1. Create a feature branch from `staging`
